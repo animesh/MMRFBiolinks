@@ -1,0 +1,5 @@
+id	filename	md5	size	state
+01e679be-9d69-47b3-b01a-91308b8f5d2f	01e679be-9d69-47b3-b01a-91308b8f5d2f/7ebc500a-a0f4-4527-9c54-a591d5db5dc3.FPKM.txt.gz	b98ab1f19d8c3d154e4ec7ea6ab9944a	310411	validated
+05eaa6b6-cc5e-44e7-a64a-8e777b46c0ad	05eaa6b6-cc5e-44e7-a64a-8e777b46c0ad/d253abd4-e807-4a63-b83e-ad7b7659e641.FPKM.txt.gz	1f6b0e6fbbf3d338f0f67e7a273433cf	308338	validated
+c93119b7-5e77-4ed0-ae63-c78044ca4dfe	c93119b7-5e77-4ed0-ae63-c78044ca4dfe/a9b0543c-0912-4032-aedd-2d37ca83e4de.FPKM.txt.gz	7c0744aa397c5f48238c4dad59cc7af5	310195	validated
+f1da3d18-cac3-4af8-b9d4-fe607dc14791	f1da3d18-cac3-4af8-b9d4-fe607dc14791/eefa8436-cd64-4765-b506-57500d8e6090.FPKM.txt.gz	5ba6b8624ec05f1ad1e7af8d1c79e851	308691	validated

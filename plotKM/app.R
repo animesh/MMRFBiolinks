@@ -1,0 +1,32 @@
+#plotKM
+#install dependencies
+#install.packages(c("BiocManager","devtools","rmarkdown","knitr","sweave","xtable","DT","httpuv", "sourcetools","shiny"))
+#BiocManager::install(c("EDASeq","genefilter", "sva", "limma","GenomicFeatures","EnsDb.Hsapiens.v79","BiocStyle"))
+#devtools::install_github(c("halpo/purrrogress","RDocTaskForce/testextra","RDocTaskForce/parsetools"))
+#devtools::install_github("marziasettino/MMRFBiolinks", build_vignettes = TRUE)
+#download and process
+#query <- GDCquery(project = "MMRF-COMMPASS",data.category = "Transcriptome Profiling",data.type = "Gene Expression Quantification",experimental.strategy = "RNA-Seq",workflow.type="HTSeq - FPKM",barcode = listSamples)
+#MMRFclin <- MMRFGDC_QueryClinic(type = "clinical")
+#listSamples <- MMRFclin$bcr_patient_barcode#c("MMRF_2473","MMRF_2111","MMRF_2362","MMRF_1824","MMRF_1458","MRF_1361","MMRF_2203","MMRF_2762","MMRF_2680","MMRF_1797")
+#query <- GDCquery(project = "MMRF-COMMPASS",data.category = "Transcriptome Profiling",data.type = "Gene Expression Quantification",experimental.strategy = "RNA-Seq",workflow.type="HTSeq - FPKM",barcode = listSamples)
+#GDCdownload(query, method = "api", files.per.chunk = 10)
+#MMRnaseqSE <- MMRFGDC_prepare(query,save = TRUE ,save.filename = paste0(hdr ,"data.rda"),directory = "GDCdata",summarizedExperiment = TRUE)
+#MMRFdataPrepro <- TCGAanalyze_Preprocessing(MMRnaseqSE)
+#save(file="MMRFdataPrepro.rds"),MMRFdataPrepro)
+#save(file="MMRFclin.rds",MMRFclin)
+#savehistory("R.history")
+library(shiny)
+library(SummarizedExperiment)
+library(dplyr)
+library(DT)
+library(ggplot2)
+library(TCGAbiolinks)
+library(MMRFBiolinks)
+load("MMRFclin.rds")
+load("MMRFdataPrepro.rds")
+ui <- fluidPage(titlePanel("Plot Kaplan–Meier estimator for Subjects with expression+clinical data in MMRF-COMMPASS"),textInput("ENSG",label = "Ensemble Gene ID:",placeholder = "ENSG00000196976"),mainPanel(plotOutput("distPlot"),textOutput("textPlot")))
+server <- function(input, output) {
+    output$distPlot <- renderPlot({TCGAanalyze_SurvivalKM(MMRFclin,MMRFdataPrepro,Genelist = input$ENSG,Survresult = T,ThreshTop=0.76,ThreshDown=0.33)})
+    output$textPlot <- renderPrint({TCGAanalyze_SurvivalKM(MMRFclin,MMRFdataPrepro,Genelist = input$ENSG,Survresult = F,ThreshTop=0.76,ThreshDown=0.33)})
+}
+shinyApp(ui = ui, server = server)
