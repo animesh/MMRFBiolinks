@@ -5,9 +5,9 @@ account: fuzzylife
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4392501
-bundleId: 4826124
+bundleId: 4828959
 url: https://fuzzylife.shinyapps.io/plotKM/
-when: 1626440829.77249
-lastSyncTime: 1626440829.77249
+when: 1626523116.86984
+lastSyncTime: 1626523116.86984
 asMultiple: FALSE
 asStatic: FALSE
